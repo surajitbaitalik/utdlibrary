@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+xmlns:th="http://www.thymeleaf.org">
+<head>
+<title>Welcome to Library</title>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/js/bootstrap.min.js"></script>
+<link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/css/bootstrap.min.css"  rel="stylesheet" id="bootstrap-css"/>
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.0.0/css/font-awesome.min.css"/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<link rel="stylesheet" type="text/css" th:href="@{/css/home.css}"/>
+<link rel="stylesheet" type="text/css" th:href="@{/css/search.css}"/>
+
+
+<script type="text/javascript">
+
+
+$(document).ready(function() {
+	 var values =[];
+
+	 $('#checkBox').change(function() {
+	  
+	   {
+		   
+		   
+	     $('#checkBox :checked').each(function() {
+	    	 
+	         values.push($(this).val());
+	       $('.showchecklater').show();
+	     });
+		 
+	     $('#values').val(values);
+	     console.log( values); 
+	   }
+	 }); 
+	 
+
+  });
+
+
+
+
+
+
+
+function searchbook() {
+	$("#checkBox").load(" #checkBox> *");
+	var bookName=$('#search').val();
+	$.ajax({
+        url: "findbooks?bookName="+bookName,
+        type: "GET",
+        contentType: "application/json;charset=utf-8",
+        dataType: "json",
+        success: function (result) {
+        	
+        	var table = $("#table tbody");
+            $.each(result, function (key, item) {
+            	
+            	if(item.availability=="available")
+            		{
+            		//append checkbox
+            		
+            		 table.append("<tr><td>"+"<input type="+"checkbox"+" name="+item.isbn+" value="+item.isbn+">" +"</td><td>"+item.name+"</td><td>"+item.isbn+"</td><td>"+item.author+"</td><td>"+item.availability+"</td></tr>")
+            		}else{
+            		 table.append("<tr><td>"+"Not Available"+"</td><td>"+item.name+"</td><td>"+item.isbn+"</td><td>"+item.author+"</td><td>"+item.availability+"</td></tr>")
+            		}
+            	$('.show_later').show();
+            });
+            
+        },
+        error: function (errormessage) {
+            alert(errormessage.responseText);
+        }
+    });
+}
+
+function myFunction(parameter){
+	alert("I'm here");
+	alert(parameter);
+	
+}
+
+
+
+
+</script>
+
+</head>
+<body>
+<div id="mySidenav" class="sidenav">
+  <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
+ <!--  <a href="../overview">Overview</a> -->
+  <a href="../library/searchbook">Search Book</a>
+  <a href="../library/checkin">Check-In</a>
+  <a href="../library/fines">Fines</a>
+  <a href="../library/addborrow">Add-Borrower</a>
+</div>
+
+<div class="wrap">
+   <div class="search">
+      <input type="text" id="search" class="searchTerm" placeholder="Search the Book ">
+      <button id="booksearch" onClick="searchbook()" class="searchButton">Search</button>
+   </div>
+</div>
+
+
+<div class="show_later">
+
+
+<div id="checkBox">
+<table class="flexme" id="table" border="1">
+  <thead>
+    <tr>
+      <th width="100">Select</th>
+      <th width="100">BookName</th>
+      <th width="100">ISBN</th>
+      <th width="100">Author</th>
+      <th width="100">Availability</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr id="test">
+      <td></td>
+    </tr>
+   </tbody>
+</table>
+</div>
+<form th:action="@{/checkout}" th:object="${checkoutobj}"  method="post">
+<input name="values"  id="values" type="hidden" />
+<div class="showchecklater">
+<button type="submit" id="checkbtn" class="registerbtn">CheckOut</button>
+ <a href="/library/" id="cancel"  class="btn btn-default">Cancel</a>
+</div>
+ 
+</form>
+</div>
+
+<p>Click on the element below to open the side navigation menu.</p>
+<span style="font-size:30px;cursor:pointer" onclick="openNav()">&#9776; Menu</span>
+
+<script>
+function openNav() {
+  document.getElementById("mySidenav").style.width = "300px";
+}
+
+function closeNav() {
+  document.getElementById("mySidenav").style.width = "0";
+}
+</script>
+
+
+
+</body>
+</html>

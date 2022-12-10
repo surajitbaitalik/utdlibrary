@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+xmlns:th="http://www.thymeleaf.org">
+<head>
+<title>Add Borrower</title>
+<link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/css/bootstrap.min.css"  rel="stylesheet" id="bootstrap-css">
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/js/bootstrap.min.js"></script>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.0.0/css/font-awesome.min.css">
+<link rel="stylesheet" type="text/css" th:href="@{/css/register.css}"/>
+<link rel="stylesheet" type="text/css" th:href="@{/css/home.css}"/>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+</head>
+<body>
+<div align="center">
+<form th:action="@{/checkinUpdate}"  th:object="${checkin}" method="post">
+  <div class="container">
+   <h1 class="h3-mb3 font-weight-normal">Check-In Form</h1>
+    <hr>
+    <table>
+    <tr>
+    <td><label for="card_id"><b>CardId</b></label></td>
+    <td><input type="text" placeholder="Enter CardId" name="card_id" required></td>
+    </tr>
+   <tr>
+    <td><label for="isbn1"><b>Book1 ISBN</b></label></td>
+   <td> <input type="text" id="isbn1" placeholder="Enter ISBN" name="isbn1" required></td>
+   </tr>
+   <tr>
+    <td><label for="isbn2"><b>Book2 ISBN</b></label></td>
+   <td> <input type="text" id="isbn2" placeholder="Enter ISBN" name="isbn2"></td>
+   </tr>
+   <tr>
+    <td><label for="isbn3"><b>Book3 ISBN</b></label></td>
+   <td> <input type="text" id="isbn3" placeholder="Enter ISBN" name="isbn3"></td>
+   </tr>
+   
+   
+   
+     </table>
+    <hr>
+    <button type="submit" class="registerbtn">Check-In</button>
+    <a href="/library/" id="cancel" name="cancel" class="btn btn-default">Cancel</a>
+  </div>
+</form>
+</div>
+</body>
+</html>

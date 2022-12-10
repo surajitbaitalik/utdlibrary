@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+xmlns:th="http://www.thymeleaf.org">
+<head>
+<title>Add Borrower</title>
+<link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/css/bootstrap.min.css"  rel="stylesheet" id="bootstrap-css">
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/js/bootstrap.min.js"></script>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.0.0/css/font-awesome.min.css">
+
+<meta name="viewport" content="width=device-width, initial-scale=1">
+
+<style>
+
+</style>
+</head>
+<body>
+<form th:action="@{/addBorrower}" method="post">
+  <div class="container">
+   <h1 class="h3-mb3 font-weight-normal">Register Borrower</h1>
+    <hr>
+    <label for="name"><b>Name</b></label>
+    <br/>
+    <input type="text" placeholder="Enter Name" name="name" required>
+    <br/>
+    <label for="ssn"><b>SSN</b></label>
+    <br/>
+    <input type="ssn" id="ssn" placeholder="Enter SSN" name="ssn" required>
+     <br/>
+
+    <label for="address"><b>Address</b></label>
+    <br/>
+    <input type="address" placeholder="Enter Address" name="address" required>
+    <br/>
+    <label for="contactNumber"><b>Contact Number</b></label>
+    <br/>
+    <input type="contactNumber" placeholder="contactNumber" name="contactNumber" required>
+    <hr>
+    <button type="submit" class="registerbtn">Register</button>
+  </div>
+</form>
+</body>
+</html>

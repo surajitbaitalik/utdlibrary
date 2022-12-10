@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+xmlns:th="http://www.thymeleaf.org">
+<head>
+<title>Library Home</title>
+<link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/css/bootstrap.min.css"  rel="stylesheet" id="bootstrap-css">
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/js/bootstrap.min.js"></script>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.0.0/css/font-awesome.min.css">
+</head>
+<body>
+<div class="container">
+<form th:action="@{/addBorrower}" method="post">
+<h1 class="h3-mb3 font-weight-normal">Register Borrower</h1>
+<label for ="name" class="sr-only">Name</label>
+<input type="name" id="name" name="name" class="form.control" placeholder="name" required autofocus/>
+<label for ="ssn" class="sr-only">SSN</label>
+<input type="ssn" id="ssn" name="ssn" class="form.control" placeholder="ssn" required autofocus/>
+<label for ="address" class="sr-only">Address</label>
+<input type="address" id="address" name="address" class="form.control" placeholder="address" required autofocus/>
+<label for ="contactNumber" class="sr-only">Contact Number</label>
+<input type="contactNumber" id="contactNumber" name="contactNumber" class="form.control" placeholder="contactnumber" required autofocus/>
+
+<button class="btn btn-lg btn-primary btn-block " type="submit" >Register</button>
+<!-- <div class="margin-top20 text-center " >Didn't You Register?<a th:href="@{/register}">Register Borrower</a></div> -->
+</form>
+</div>
+</body>
+</html>

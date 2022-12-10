@@ -1,0 +1,10 @@
+Manifest-Version: 1.0
+Built-By: surajitbaitalik
+Build-Jdk: 17.0.4.1
+Implementation-Title: utdlibrary
+Implementation-Version: 0.0.1-SNAPSHOT
+Implementation-Vendor-Id: com.library
+Implementation-URL: https://projects.spring.io/spring-boot/#/spring-boot
+ -starter-parent/utdlibrary
+Created-By: Maven Integration for Eclipse
+

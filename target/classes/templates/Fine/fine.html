@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+xmlns:th="http://www.thymeleaf.org">
+<head>
+<title>Welcome to Library</title>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/js/bootstrap.min.js"></script>
+<link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/css/bootstrap.min.css"  rel="stylesheet" id="bootstrap-css"/>
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.0.0/css/font-awesome.min.css"/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<link rel="stylesheet" type="text/css" th:href="@{/css/home.css}"/>
+<link rel="stylesheet" type="text/css" th:href="@{/css/search.css}"/>
+
+
+<script type="text/javascript">
+
+
+$(document).ready(function() {
+	 var values =[];
+
+	 $('#checkBox').change(function() {
+	  
+	   {
+		   
+		   
+	     $('#checkBox :checked').each(function() {
+	    	 
+	         values.push($(this).val());
+	       $('.showchecklater').show();
+	     });
+		 
+	     $('#values').val(values);
+	     console.log( values); 
+	   }
+	 }); 
+	 
+
+  });
+
+
+
+
+
+
+
+function searchbook() {
+	var card_id=$('#search').val();
+	$.ajax({
+        url: "findfine?card_id="+card_id,
+        type: "GET",
+        contentType: "application/json;charset=utf-8",
+        dataType: "json",
+    success: function (result) {
+        	
+        	var table = $("#table tbody");
+            $.each(result, function (key, item) {
+            	console.log(item);
+            	table.append("<tr><td>"+"<input type="+"checkbox"+" name="+item.loan_id+" value="+item.loan_id+">" +"</td><td>"+item.loan_id+"</td><td>"+item.isbn+"</td><td>"+item.order_Date+"</td><td>"+item.submission_Date+"</td><td>"+item.fine+"</td></tr>");
+            	$('.show_later').show();
+            });
+            
+        },
+        error: function (errormessage) {
+            alert(errormessage.responseText);
+        }
+    });
+}
+
+function myFunction(parameter){
+	alert("I'm here");
+	alert(parameter);
+	
+}
+
+
+
+
+</script>
+
+</head>
+<body>
+<div id="mySidenav" class="sidenav">
+  <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
+ <!--  <a href="../overview">Overview</a> -->
+  <a href="../library/searchbook">Search Book</a>
+  <a href="../library/checkin">Check-In</a>
+  <a href="../library/fines">Fines</a>
+  <a href="../library/addborrow">Add-Borrower</a>
+</div>
+
+<div class="wrap">
+   <div class="search">
+      <input type="text" id="search" class="searchTerm" placeholder="Enter the card Id.">
+      <button id="booksearch" onClick="searchbook()" class="searchButton">Fine</button>
+   </div>
+</div>
+
+
+<div class="show_later">
+
+
+<div id="checkBox">
+<table class="flexme" id="table" border="1">
+  <thead>
+    <tr>
+      <th width="100">Select</th>
+      <th width="100">LoanId</th>
+      <th width="100">ISBN</th>
+      <th width="100">CheckoutDate</th>
+      <th width="100">SubmissionDate</th>
+      <th width="100">Fine</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr id="test">
+      <td></td>
+    </tr>
+   </tbody>
+</table>
+</div>
+<form th:action="@{/payFine}" th:object="${checkoutobj}"  method="post">
+<input name="values"  id="values" type="hidden" />
+<div class="showchecklater">
+<button type="submit" id="checkbtn" class="registerbtn">PayFine</button>
+ <a href="../" id="cancel"  class="btn btn-default">Cancel</a>
+</div>
+ 
+</form>
+</div>
+
+<p>Click on the element below to open the side navigation menu.</p>
+<span style="font-size:30px;cursor:pointer" onclick="openNav()">&#9776; Menu</span>
+
+<script>
+function openNav() {
+  document.getElementById("mySidenav").style.width = "300px";
+}
+
+function closeNav() {
+  document.getElementById("mySidenav").style.width = "0";
+}
+</script>
+
+
+
+</body>
+</html>
